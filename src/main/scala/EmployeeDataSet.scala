@@ -24,6 +24,8 @@ object EmployeeDataSet {
 
     // data source path
     val csvFilePath = "src/main/resources/employee.csv"
+
+
     val jsonFilePath = "src/main/resources/employee.json"
     val parquetFilePath = "src/main/resources/employee.parquet"
 
