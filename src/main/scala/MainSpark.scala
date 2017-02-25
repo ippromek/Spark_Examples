@@ -12,6 +12,7 @@ object Main extends InitSpark {
     val version = spark.version
     println("SPARK VERSION = " + version)
 
+
     val sumHundred: Long = spark.range(1, 101).reduce(_ + _)
     println(f"Sum 1 to 100 = $sumHundred")
 
