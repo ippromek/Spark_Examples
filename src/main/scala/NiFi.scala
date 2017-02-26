@@ -3,9 +3,9 @@ import java.nio.charset.StandardCharsets
 
 import org.apache.nifi.remote.client.SiteToSiteClient
 import org.apache.nifi.spark.NiFiReceiver
-import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming._
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
   * Created by oleg.baydakov on 26/02/2017.
@@ -21,7 +21,7 @@ object NiFi {
 
     val config = new SparkConf().setMaster("local[*]") setAppName ("Nifi_Spark_Data")
     val sc = new SparkContext(config)
-    val ssc = new StreamingContext(sc, Seconds(10))
+    val ssc = new StreamingContext(sc, Seconds(5))
 
     val lines = ssc.receiverStream(new NiFiReceiver(conf, StorageLevel.MEMORY_ONLY))
 
