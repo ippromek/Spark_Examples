@@ -1,6 +1,6 @@
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
-
 /**
   * Created by ganeshchand on 12/20/16.
   */
@@ -79,6 +79,14 @@ object EmployeeDataSet {
     spark.catalog.listTables.show
     spark.sql("select count(*) from address").show
     //address.show
+
+
+    spark.read.schema(employeeSchema1).option("header", true).csv(csvFilePath).withColumn("input_file_name", input_file_name()).show(5)
+
+    employee.createOrReplaceTempView("employee")
+    spark.sql("select spark_partition_id() from employee").toDF().show(5)
+    spark.catalog.dropTempView("tmp_table")
+
 
     // store the catalog in a shorter variable (less typing)
     //val cat = spark.catalog
